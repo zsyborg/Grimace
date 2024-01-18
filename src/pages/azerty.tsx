@@ -543,7 +543,7 @@ return (
             {/* <img src='/logo1.png' width={500} className='text-center justify-center justify-items-center justify-self-center'/> */}
             <img src='/logo1.png' width={800} className='img-fluid' />
             <h1>
-                <a className='p-5 px-11 bg-red-700' href='/retro/index.html'>Enter Frimace's World</a>
+                <a className='p-5 px-11 bg-red-700' href='/retro/index.html'>Enter Grimace's World</a>
             </h1>
           </div>
        
