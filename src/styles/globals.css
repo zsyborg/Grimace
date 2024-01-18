@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('../../public/stylesheet.css');
+/* @import url('../../public/stylesheet.css'); */
 
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 
