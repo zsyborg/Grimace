@@ -181,6 +181,26 @@ export default function Home() {
   //   }
   // }
 
+let config = {
+  method: 'get',
+  maxBodyLength: Infinity,
+  url: 'localhost:3000/api/users/check',
+  headers: { }
+};
+
+axios.get(config)
+.then((response) => {
+  console.log(JSON.stringify(response.data));
+})
+.catch((error) => {
+  console.log(error);
+});
+
+
+
+
+
+
   
 }, [])
 
@@ -566,17 +586,17 @@ return (
 
 
         
-        <TabSelector
+        {/* <TabSelector
         isActive={selectedTab === "help"}
         onClick={() => setSelectedTab("help")}
         >
         How To Play?
-        </TabSelector>
+        </TabSelector> */}
 
 
         <div className="p-4">
         <TabPanel hidden={selectedTab !== "mynft"}>
-          <div className='grid grid-cols-2 justify-items-center justify-center text-center gap-4'>
+          <div className='grid grid-cols-1 justify-items-center justify-center text-center gap-4'>
         
 
 <div className=''>

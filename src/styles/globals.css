@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Oswald:wght@300&display=swap');
+@import url('../../public/stylesheet.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -23,7 +25,7 @@ body {
     */
     animation: all 1s;
     -webkit-animation: all 1s;
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Pixelify Sans', sans-serif;
   }
   
   .mainbg{
