@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html>
+<head>
+<title>Grimace Game On Solana</title>
+<style>
+body
+{
+background:#000;
+overflow:hidden;
+margin:0;
+}
+canvas
+{
+width:100%;
+height:100%;
+image-rendering:-moz-crisp-edges;
+image-rendering:pixelated;
+}
+</style>
+</head>
+<body>
+    <nav id="navigation"></nav>
+<canvas id="c1"></canvas>
+<canvas id="c2" style=visibility:hidden></canvas>
+<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+
+<!-- <script type="application/javascript" src='solana.js'></script> -->
+<script type="module">
+import { createRoot } from 'react-dom/client';
+
+function NavigationBar() {
+  // TODO: Actually implement a navigation bar
+  return <h1>Hello from React!</h1>;
+}
+
+const domNode = document.getElementById('navigation');
+const root = createRoot(domNode);
+root.render(<NavigationBar />);
+</script>
+<script type="text/javascript" src='gameEngine.js'></script>
+<script type="text/javascript" src='gameEngineDebug.js'></script>
+<script type="text/javascript" src='game.js'></script>
+</body>
+</html>

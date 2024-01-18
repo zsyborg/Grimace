@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Oswald:wght@300&display=swap');
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+    color: rgb(var(--foreground-rgb));
+    /*background: linear-gradient(      to bottom,      transparent,      rgb(var(--background-end-rgb))    )    rgb(var(--background-start-rgb));
+    */
+    animation: all 1s;
+    -webkit-animation: all 1s;
+    font-family: 'Indie Flower', cursive;
+  }
+  
+  .mainbg{
+    background-color: wheat;    
+    /* background-image: url('../../public/bush.webp');
+    background-repeat: repeat;
+    background-blend-mode: multiply; */
+}
+
+.wallet-adapter-button, .wallet-adapter-button-trigger{
+  all:unset !important;
+}
+
+.wallet-adapter-button {
+  background-color: indigo !important;
+}
+
+.wallet-adapter-button-trigger{
+  background-color: indigo !important;
+
+}
+
+.wallet-adapter-button:hover{
+    background-color: blue !important;
+}
+
+.wallet-adapter-button-trigger:hover{
+background-color: blue !important;
+}
+
+
+a:hover{
+  cursor: url(../../public/Alternateselect.ani);
+}
+button{
+  cursor: url(../../public/Alternateselect.ani) !important;
+}
+.btncur:hover{
+  cursor: url(../../public/Alternateselect.ani) !important;
+}
+.btncur{
+  cursor: url(../../public/Alternateselect.ani) !important;
+}
+.wallet-adapter-button{
+  cursor: url(../../public/Alternateselect.ani) !important;
+}
+
+
+.heading{
+  font-size: 2em;
+}
+
+
+.techFrame{
+  overflow: hidden;
+  box-shadow: 0px 1px 6px rgb(255, 255, 255);
+  background-color: rgba(0,0,0,0);
+}
+
+.flat{
+    content: "";
+    position:absolute;
+    margin:-20px;
+    width:40px;
+    height:40px;
+    background-color:#555;
+}
+
+.wallet-adapter-button{
+  transition: all 0.4s ease-in-out !important;
+  -webkit-transition: all 0.4s ease-in-out !important;
+  -moz-transition: all 0.4s ease-in-out !important;
+  -ms-transition: all 0.4s ease-in-out !important;
+  -o-transition: all 0.4s ease-in-out !important;
+  border: 1px white solid !important;
+  background-color: indigo !important;
+  width: 200px !important;
+  border-radius: 25px !important;
+}
+
+.wallet-adapter-button-trigger{
+
+  border: 2px white solid;
+  border-radius: 2px !important;
+  
+  color: white !important;
+  background-color: indianred !important;
+}
+.wallet-adapter-button:hover{
+  border: 1px white solid !important;
+  background-color: rgba(57, 57, 57, 0.8) !important;
+  
+}
+
+
+@keyframes grimmer {
+
+  0%{
+    transform: scale(0);
+  }
+
+  100%{
+    transform: scale(1);
+  }
+  
+}
+
+@keyframes grimheading {
+
+  0%{
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 1;
+  }
+  
+}
+
+.grim{
+  animation: grimmer;
+  animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  animation-duration: 1s;
+}
+
+.grimheading{
+  animation: grimheading;
+  animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  animation-duration: 1s;
+  animation-delay: 1s;
+}
+
+
+.loader {
+  transform: rotateZ(45deg);
+  perspective: 1000px;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  color: #fff;
+}
+  .loader:before,
+  .loader:after {
+    content: '';
+    display: block;
+    position: relative;
+    width: inherit;
+    height: inherit;
+    margin-top: -48px;
+    border-radius: 50%;
+    transform: rotateX(70deg);
+    animation: 1s spin linear infinite;
+  }
+  .loader:after {
+    color: #FF3D00;
+    transform: rotateY(70deg);
+    animation-delay: .4s;
+  }
+
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotateZ(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateZ(360deg);
+  }
+}
+
+@keyframes rotateccw {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+@keyframes spin {
+  0%,
+  100% {
+    box-shadow: .2em 0px 0 0px currentcolor;
+  }
+  12% {
+    box-shadow: .2em .2em 0 0 currentcolor;
+  }
+  25% {
+    box-shadow: 0 .2em 0 0px currentcolor;
+  }
+  37% {
+    box-shadow: -.2em .2em 0 0 currentcolor;
+  }
+  50% {
+    box-shadow: -.2em 0 0 0 currentcolor;
+  }
+  62% {
+    box-shadow: -.2em -.2em 0 0 currentcolor;
+  }
+  75% {
+    box-shadow: 0px -.2em 0 0 currentcolor;
+  }
+  87% {
+    box-shadow: .2em -.2em 0 0 currentcolor;
+  }
+}

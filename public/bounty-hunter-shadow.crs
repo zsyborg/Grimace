@@ -1,0 +1,45 @@
+﻿[AppStarting]
+Path=Working.ani
+
+[SizeNS]
+Path=Vertical resize.ani
+
+[No]
+Path=unavailable.ani
+
+[IBeam]
+Path=text select.ani
+
+[Crosshair]
+Path=precision.ani
+
+[Arrow]
+Path=Normal.ani
+
+[SizeAll]
+Path=move tool.ani
+
+[Hand]
+Path=link select.ani
+
+[SizeWE]
+Path=horizontal resize.ani
+
+[Help]
+Path=help select.ani
+
+[NWPen]
+Path=handwriting.ani
+
+[SizeNESW]
+Path=diag resize2.ani
+
+[SizeNWSE]
+Path=diag resize1.ani
+
+[Wait]
+Path=Busy.ani
+
+[UpArrow]
+Path=Alternate select.ani
+

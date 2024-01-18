@@ -1,0 +1,42 @@
+{
+    "name": "MechCats #0",
+    "symbol": "MECH",
+    "description": "Welcome to the MechCats Project, a futuristic Cyberpunk collection to revolutionize the concept of NFTs. We are proud to introduce a unique staking mechanism system that will enable our community to burn useless NFTs while earning the maximum amount of SOL that the Solana ecosystem can offer.",
+    "seller_fee_basis_points": 777,
+    "image": "https://bafybeicvpxswdrup5fkqukblxcdggmu2mrfo7o7a44a4yablyhwlajvt3u.ipfs.nftstorage.link/",
+    "external_url": "https://discord.gg/jMHTPeGe",
+    "edition": 383,
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Purple"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Transparent purple"
+        },
+        {
+            "trait_type": "Clothes",
+            "value": "Charged Up"
+        },
+        {
+            "trait_type": "Headwear",
+            "value": "Antler"
+        }
+    ],
+    "properties": {
+        "files": [
+            {
+                "uri": "https://nftstorage.link/ipfs/bafybeifbjfbppq2fuaof5fjybrna5xmflzfbhyjpdfutc5gv4hhfwsonrq/0.png",
+                "type": "image/png"
+            }
+        ],
+        "category": "image",
+        "creators": [
+            {
+                "address": "3B6aostwcwc1Tor1d2aYiU2zvY5VkbZYqedBtwTtp1B3",
+                "share": 100
+            }
+        ]
+    }
+}
