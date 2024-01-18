@@ -533,18 +533,35 @@ return (
   
  
   <main className='relative flex flex-col justify-center overflow-hidden h-full' style={{height:'100vh'}} >
+
+
+      <div className="container-fluid">
+        <div className="row">
+          <div
+            className="col-12 flex text-center justify-center align-middle justify-items-center flex-col"
+          >
+            {/* <img src='/logo1.png' width={500} className='text-center justify-center justify-items-center justify-self-center'/> */}
+            <img src='/logo1.png' width={800} className='img-fluid' />
+            <h1>
+                <a className='p-5 px-11 bg-red-700' href='/retro/index.html'>Enter Grimace's World</a>
+            </h1>
+          </div>
+       
+          
+        </div>
+      </div>
          
                     
   <div className='flex grid-cols-6 flex-col gap-4 flex-wrap align-middle justify-items-center items-center justify-center text-center grim'>
   
-    <img src='/logo1.png' width={800} className='img-fluid' />
   
-     <h1 className='heading m-0 p-0 text-indigo-800'>Welcome to Grimace Game On $Solana</h1>
-     <h2 style={{fontSize:'20pt'}} className='text-indigo-800'>Kill Jeets and win it to the leaderboards</h2>
+     {/* <h1 className='heading m-0 p-0 text-indigo-800'>Welcome to Grimace Game On $Solana</h1>
+     <h2 style={{fontSize:'20pt'}} className='text-indigo-800'>Kill Jeets and win it to the leaderboards</h2> */}
      {/* <h2 className='m-0 p-0'>Solana's First Compressed NFT Marketplace</h2> */}
-      <WalletMultiButton />
+      {/* <WalletMultiButton /> */}
      </div>
     
+      
   <div className='flex justify-center justify-items-center'>
     
      <p>
@@ -701,11 +718,11 @@ Play AZERTY
      
         </div>
 
-
-<div class="container-fluid">
-  <div class="row">
+{/* 
+<div className="container-fluid">
+  <div className="row">
     <div
-      class="col-12"
+      className="col-12"
     >
   <h1 className=' text-indigo-600'>Leaderboard</h1>
     
@@ -713,7 +730,7 @@ Play AZERTY
     
     
   </div>
-</div>
+</div> */}
 
 
     </main>

@@ -1,6 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  rewrites: async () => {
+    return[
+      {
+        source: '/',
+        destination: '/retro/index.html',
+      }
+    ]
+  },
   eslint: {
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
