@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  rewrites: async () => {
+  async rewrites() {
     return[
       {
-        source: '/',
-        destination: '/retro/index.html',
+        source: '/api/:path*',
+        destination: 'https:///localhost:3000/:path*',
       }
     ]
   },

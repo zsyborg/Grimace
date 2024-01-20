@@ -367,17 +367,18 @@ async function onSubmit(event: FormEvent<HTMLFormElement>) {
     const data = await response.json()
 }
 
+
+
 const submitter = () => {
   setIsLoading(true);
   
   let data = {
     wallet: publicKey?.toBase58(),
-    username: username,
     score: 0
   };
   
   let userdata = {
-    username: username
+    wallet: publicKey?.toBase58()
   }
   
 // console.log("Wallet: " + publicKey?.toBase58() + "& Username is: " + username)
@@ -401,25 +402,26 @@ axios.post('/api/users/check', userdata)
   
   // console.log(response.data)
   if(response.data.success === false){
-    console.log("Reached False Section")
+    console.log("Wallet Doesn't Exists")
     console.log(response)
-    setIsLoading(true);
+    setIsLoading(false);
     
     axios.post('/api/users', data)
     .then((response) => {
       console.log(response)
 
-      // navigate("../../public/game/qwerty");
+
       setIsLoading(false);
       // push('/game/qwerty.html');
     })
     .catch((error) => {
       console.log(error);
+      console.log("Axios Failed")
     });
     
     
   } else if(response.data.success === true) {
-    console.log("Reached True Section")
+    console.log("Wallet Exists")
     push('/game/qwerty.html');
       
   }
@@ -543,7 +545,7 @@ return (
             {/* <img src='/logo1.png' width={500} className='text-center justify-center justify-items-center justify-self-center'/> */}
             <img src='/logo1.png' width={800} className='img-fluid' />
             <h1>
-                <a className='p-5 px-11 bg-red-700' href='/retro/index.html'>Enter Grimace's World</a>
+                <a className='p-5 px-11 bg-red-700 hover:bg-yellow-400 hover:text-gray-600' href='/retro/index.html'>Enter Grimace's World</a>
             </h1>
           </div>
        

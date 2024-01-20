@@ -44,8 +44,8 @@ let coinSoundTimer = new Timer();
 
 
 
-localStorage.getItem("username");
-console.log("passed Username is " + localStorage.getItem("username"))
+localStorage.getItem("wallet");
+console.log("passed Wallet is " + localStorage.getItem("wallet"))
 
 
 
@@ -992,13 +992,15 @@ class Pickup extends MyGameObject
             PlaySound(10);
             ++playerData.coins;
                     // score update here
+                    console.log("Preparing to update Player Score")
                     var score = playerData.coins
-                    var usr = localStorage.getItem("username")
+                    // var usr = localStorage.getItem("username")
+                    var wallet = localStorage.getItem("wallet")
                     var myHeaders = new Headers();
                     myHeaders.append("Content-Type", "application/json");
 
                     var raw = JSON.stringify({
-                    "username": usr,
+                    "wallet": wallet,
                     "score": score
                     });
 
@@ -1009,9 +1011,10 @@ class Pickup extends MyGameObject
                     redirect: 'follow'
                     };
 
-                    fetch("localhost:3000/api/score", requestOptions)
+                    fetch("http://localhost:3000/api/score", requestOptions)
                     .then(response => response.text())
                     .then(result => console.log(result))
+                    .then(console.log("PATCH is Succesful"))
                     .catch(error => console.log('error', error));
 
         }

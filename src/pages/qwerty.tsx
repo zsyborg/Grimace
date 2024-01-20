@@ -145,45 +145,79 @@ export default function Home() {
 
 
 
-  useEffect(() => {
-    if (publicKey) {
-      
-    } else {
 
-    }
-    // setActive(active => !active)
-    // const tid = setInterval(() => setActive(active => !active), 2000);
-    return () => setActive(active);
-  }, []);
-  
-  
-  useEffect(() => {
-
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.post(connection, {
-  //         jsonrpc: "2.0",
-  //         id: "",
-  //         method: "getAssetsByOwner",
-  //         params: [
-  //         publicKey,
-  //         sortBy,
-  //         limit,
-  //         page,
-  //         before,
-  //         after
-  //       ]
-  //     });
-  //     const data = response.data;
-  //     setNFTs(data.result.items);
-  //     console.log(data.result)
-  //   } catch (error) {
-  //     console.error('Error fetching NFTs:', error);
+  // useEffect(() => {
+    
   //   }
-  // }
-
+  //   // setActive(active => !active)
+  //   // const tid = setInterval(() => setActive(active => !active), 2000);
+  //   return () => setActive(active);
+  // }, []);
   
-}, [])
+  const pushToGme = async () => {
+    if (publicKey) {
+      localStorage.setItem("wallet", publicKey.toBase58().toString())
+
+      let data = {
+        wallet: publicKey?.toBase58(),
+        score: 0
+      };
+      
+      let userdata = {
+        wallet: publicKey?.toBase58().toString()
+      }
+      
+    // console.log("Wallet: " + publicKey?.toBase58() + "& Username is: " + username)
+    
+    
+    
+    let config = {
+      method: 'POST',
+      maxBodyLength: Infinity,
+      url: 'http://grimaceonsol.xyz/api/users',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : userdata
+    };
+    
+    
+    return axios.post('http://localhost/api/users/check', userdata)
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+          if(response.data.success === false){
+            console.log("Wallet Does not Exists")
+            console.log(response)
+            setIsLoading(false);
+            
+            return axios.post('http://grimaceonsol.xyz/api/users', data)
+            .then((response) => {
+              console.log(response)
+              setIsLoading(false);
+              push('http:/localhost:3000/game/qwerty.html');
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+            
+            
+          } else if(response.data.success === true) {
+            console.log("Wallet Exists")
+            push('http:/localhost:3000/game/qwerty.html');
+              
+          }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+
+      // push('http:/localhost:3000/game/qwerty.html')
+    } else {
+    }
+  }
+
+pushToGme()
 
 
 
@@ -194,24 +228,23 @@ const fecthUser = async () => {
     if (publicKey) {
       console.log("Wallet Works " + publicKey.toBase58())
 
-      // Check wallet and cross with mongodb existence
+      // Check wallet and cross check with mongodb existence
       let data = {
         wallet: publicKey.toBase58(),
       };
 
-          await axios.post('/api/users/check', data)
+          await axios.post('http://grimaceonsol.xyz/api/users/check', data)
               .then((response) => {
-                localStorage.setItem("username", response.data.username)
+                
                 localStorage.setItem("wallet", response.data.wallet)
                 localStorage.setItem("score", response.data.score)
-                let usr = response.data.username
+                // let usr = response.data.username
                 let scr = response.data.score
                 let wlt = response.data.wallet
-                setUserName(usr)
                 setWallet(wlt)
-                serScore(scr)
+                setScore(scr)
                 
-                console.log("Username is " + username)
+                // console.log("Username is " + username)
                 
               })
               .catch((error) => {
@@ -245,86 +278,6 @@ const handlePlay = (ast: any, id: any) => {
 
 };
 
-const initTransfer = () => {
-  console.log("inited txn")
-}
-
-
-
-
-const ListNFT = () => {
-  
-  return(
-
-    <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
-        <Transition.Child
-          as={Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-        </Transition.Child>
-
-        <div className="fixed inset-0 z-10 overflow-y-auto">
-          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-              enterTo="opacity-100 translate-y-0 sm:scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-              leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                  <div className="sm:flex sm:items-start">
-                    <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                      <ExclamationTriangleIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
-                    </div>
-                    <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                      <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
-                        Deactivate account
-                      </Dialog.Title>
-                      <div className="mt-2">
-                        <p className="text-sm text-gray-500">
-                          Are you sure you want to deactivate your account? All of your data will be permanently
-                          removed. This action cannot be undone.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                  <button
-                    type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                    onClick={() => setOpen(false)}
-                    >
-                    Deactivate
-                  </button>
-                  <button
-                    type="button"
-                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                    onClick={() => setOpen(false)}
-                    ref={cancelButtonRef}
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </Dialog.Panel>
-            </Transition.Child>
-          </div>
-        </div>
-      </Dialog>
-    </Transition.Root>
-  )
-}
 
 
 
@@ -339,7 +292,7 @@ const handleChange = (event:any) => {
 async function onSubmit(event: FormEvent<HTMLFormElement>) {
   event.preventDefault()
   const formData = new FormData(event.currentTarget)
-    const response = await fetch('/api/users', {
+    const response = await fetch('http://grimaceonsol.xyz/api/users', {
       method: 'POST',
       body: formData,
     })
@@ -348,17 +301,36 @@ async function onSubmit(event: FormEvent<HTMLFormElement>) {
     const data = await response.json()
 }
 
+
+function checkUserz() {
+ 
+}
+
+
+
+  // checkUserz()
+
+
+
+
+
+
+
+
+
+
+
+
+
 const submitter = () => {
   setIsLoading(true);
-  
   let data = {
-    wallet: publicKey?.toBase58(),
-    username: username,
+    wallet: publicKey?.toBase58().toString(),
     score: 0
   };
   
   let userdata = {
-    username: username
+    wallet: publicKey?.toBase58().toString()
   }
   
 // console.log("Wallet: " + publicKey?.toBase58() + "& Username is: " + username)
@@ -368,7 +340,7 @@ const submitter = () => {
 let config = {
   method: 'POST',
   maxBodyLength: Infinity,
-  url: 'http://localhost:3000/api/users',
+  url: 'http://grimaceonsol.xyz/api/users',
   headers: { 
     'Content-Type': 'application/json'
   },
@@ -377,22 +349,21 @@ let config = {
 
 
 
-axios.post('/api/users/check', userdata)
+axios.post('http://grimaceonsol.xyz/api/users/check', userdata)
 .then((response) => {
   
   // console.log(response.data)
   if(response.data.success === false){
-    console.log("Reached False Section")
+    console.log("Wallet Does not Exists")
     console.log(response)
     setIsLoading(true);
     
-    axios.post('/api/users', data)
+    axios.post('http://grimaceonsol.xyz/api/users', data)
     .then((response) => {
       console.log(response)
 
-      // navigate("../../public/game/qwerty");
       setIsLoading(false);
-      // push('/game/qwerty.html');
+      // push('http:/localhost:3000/game/qwerty.html');
     })
     .catch((error) => {
       console.log(error);
@@ -400,8 +371,9 @@ axios.post('/api/users/check', userdata)
     
     
   } else if(response.data.success === true) {
-    console.log("Reached True Section")
-    push('/game/qwerty.html');
+    console.log("Wallet Exists")
+    console.log("DEBUG" + userdata);
+    push('http:/localhost:3000/game/qwerty.html');
       
   }
 
@@ -430,14 +402,13 @@ const azerty = () => {
   setUserName(username)
   
   let data = {
-    wallet: publicKey?.toBase58(),
-    username: username,
+    wallet: publicKey?.toBase58().toString(),
     score: 0
   };
-  localStorage.setItem("username", username)
+  localStorage.setItem("wallet", wallet)
 
 let userdata = {
-  username: username
+  wallet: publicKey?.toBase58()
 }
 
 // console.log("Wallet: " + publicKey?.toBase58() + "& Username is: " + username)
@@ -447,7 +418,7 @@ let userdata = {
 let config = {
   method: 'POST',
   maxBodyLength: Infinity,
-  url: 'http://localhost:3000/api/users',
+  url: 'http://grimaceonsol.xyz/api/users',
   headers: { 
     'Content-Type': 'application/json'
   },
@@ -456,7 +427,7 @@ let config = {
 
 
 
-axios.post('/api/users/check', userdata)
+axios.post('http://grimaceonsol.xyz/api/users/check', userdata)
 .then((response) => {
   
   // console.log(response.data)
@@ -465,13 +436,13 @@ axios.post('/api/users/check', userdata)
     console.log(response)
     setIsLoading(true);
     
-    axios.post('/api/users', data)
+    axios.post('http://grimaceonsol.xyz/api/users', data)
     .then((response) => {
       console.log(response)
 
-      // navigate("../../public/game/qwerty");
+      // navigate("../../publichttp:/localhost:3000/game/qwerty");
       setIsLoading(false);
-      push('/game/azerty.html');
+      push('http:/localhost:3000/game/azerty.html');
     })
     .catch((error) => {
       console.log(error);
@@ -480,7 +451,7 @@ axios.post('/api/users/check', userdata)
     
   } else if(response.data.success === true) {
     console.log("Reached True Section")
-    push('/game/azerty.html');
+    push('http:/localhost:3000/game/azerty.html');
       
   }
 
@@ -509,7 +480,6 @@ axios.post('/api/users/check', userdata)
 
 
 
-
 return (
   
  
@@ -519,9 +489,8 @@ return (
   <div className='flex grid-cols-6 flex-col gap-4 flex-wrap align-middle justify-items-center items-center justify-center text-center grim'>
   
     <img src='/logo1.png' width={800} className='img-fluid' />
+    <img src='/welcome.png' width={800} className='img-fluid' />
   
-     <h1 className='heading m-0 p-0 text-indigo-800'>Welcome to Grimace Game On $Solana</h1>
-     <h2 style={{fontSize:'20pt'}} className='text-indigo-800'>Kill Jeets and win it to the leaderboards</h2>
      {/* <h2 className='m-0 p-0'>Solana's First Compressed NFT Marketplace</h2> */}
       <WalletMultiButton />
      </div>
@@ -567,17 +536,17 @@ return (
 
 
         
-        <TabSelector
+        {/* <TabSelector
         isActive={selectedTab === "help"}
         onClick={() => setSelectedTab("help")}
         >
         How To Play?
-        </TabSelector>
+        </TabSelector> */}
 
 
         <div className="p-4">
         <TabPanel hidden={selectedTab !== "mynft"}>
-          <div className='grid grid-cols-2 justify-items-center justify-center text-center gap-4'>
+          <div className='grid grid-cols-1 justify-items-center justify-center text-center gap-4'>
         
 
 <div className=''>
@@ -586,7 +555,7 @@ return (
   <form onSubmit={submitter}>
 
   {/* <label for="username">Enter your username</label><br/> */}
-  <input
+  {/* <input
     type="text"
     className="form-control text-indigo-800"
     name="username"
@@ -595,7 +564,7 @@ return (
     onChange={handleChange}
     value={(username)}
     onLoad={username}
-    />
+    /> */}
     <br/>
     <input
     type="text"
@@ -613,6 +582,7 @@ return (
     {/* <button type='submit' className='text-gray-100 bg-sky-700 hover:bg-yellow-800 px-11 py-2 rounded-2xl bleep'>
     Play
     </button> */}
+              <a className='btn btn-primary rounded-full p-4 bg-indigo-800' href='http:/localhost:3000/game/qwerty.html'>Play</a>
 
     
 
@@ -624,12 +594,12 @@ return (
   </div>
 
 : null}
-<a href='#' onClick={submitter} id="bleep" className='text-gray-100 bg-sky-700 hover:bg-fuchsia-950 px-8 py-2 border border-indigo-900 border-5'>
+{/* <a href='#' onClick={submitter} id="bleep" className='text-gray-100 bg-sky-700 hover:bg-fuchsia-950 px-8 py-2 border border-indigo-900 border-5'>
 Play QWERTY
 </a>
 <a href='#' onClick={azerty} id="bleep" className='text-gray-100 bg-sky-700 hover:bg-fuchsia-950 px-8 py-2 border border-indigo-900 border-5'>
 Play AZERTY
-</a>
+</a> */}
 
 
 

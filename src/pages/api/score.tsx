@@ -59,7 +59,7 @@ export default async function handler(
       try {
         const clt = new MongoClient(MONGODB_URI)
         const huntCollection = clt.db("Grimace").collection("Users")
-        const crd = await huntCollection.updateOne({username:req.body.username},{$set:{score:req.body.score}})
+        const crd = await huntCollection.updateOne({wallet:req.body.wallet},{$set:{score:req.body.score}})
 
 
         // const card = await Card.create(
