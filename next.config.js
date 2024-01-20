@@ -5,7 +5,7 @@ const nextConfig = {
     return[
       {
         source: '/api/:path*',
-        destination: 'https:///localhost:3000/:path*',
+        destination: 'http://grimaceonsol.xyz/:path*',
       }
     ]
   },
