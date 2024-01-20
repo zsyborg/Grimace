@@ -182,7 +182,7 @@ export default function Home() {
     };
     
     
-    return axios.post('http://localhost/api/users/check', userdata)
+    return axios.post('https://grimaceonsol.xyz/api/users/check', userdata)
     .then((response) => {
       console.log(JSON.stringify(response.data));
           if(response.data.success === false){
